@@ -1,0 +1,12 @@
+{:paths ["src"]
+ ;; kotoba-lang/time — Layer 3 (I/O) of the kotoba foundational stdlib.
+ ;; Instant/Duration as pure data; wall-clock comes from a HOST-INJECTED clock
+ ;; capability (no System/currentTimeMillis in the lib) so it runs on kotoba-WASM.
+ ;; Zero third-party runtime deps; .cljc. See ADR-kotoba-lang-foundational-stdlib.md.
+ :deps {}
+ :aliases
+ {:test {:extra-paths ["test"]
+         :extra-deps {io.github.cognitect-labs/test-runner
+                      {:git/tag "v0.5.1" :git/sha "dfb30dd"}}
+         :main-opts ["-m" "cognitect.test-runner"]
+         :exec-fn cognitect.test-runner.api/test}}}
