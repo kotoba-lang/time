@@ -1,4 +1,5 @@
 {:paths ["src"]
+ :version "0.1.0"
  ;; kotoba-lang/time — Layer 3 (I/O) of the kotoba foundational stdlib.
  ;; Instant/Duration as pure data; wall-clock comes from a HOST-INJECTED clock
  ;; capability (no System/currentTimeMillis in the lib) so it runs on kotoba-WASM.
