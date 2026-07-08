@@ -35,5 +35,5 @@
   (is (= (:time/duration (t/days 1)) 86400000)))
 
 (deftest parse-rejects-malformed
-  (is (thrown? clojure.lang.ExceptionInfo (t/iso8601->instant "short")))
-  (is (thrown? clojure.lang.ExceptionInfo (t/iso8601->instant "2026-06-30 12:00:00Z")))) ; space not T
+  (is (thrown? #?(:clj clojure.lang.ExceptionInfo :cljs js/Error) (t/iso8601->instant "short")))
+  (is (thrown? #?(:clj clojure.lang.ExceptionInfo :cljs js/Error) (t/iso8601->instant "2026-06-30 12:00:00Z")))) ; space not T
