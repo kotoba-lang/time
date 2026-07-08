@@ -9,13 +9,25 @@
   (is (= "1970-01-01T01:00:00Z" (t/->iso8601 (t/instant 3600000))))
   (is (= "1970-01-02T00:00:00Z" (t/->iso8601 (t/instant 86400000)))))
 
+(deftest pre-epoch-instants
+  ;; quot truncates toward zero while mod floors toward -infinity -- for a
+  ;; negative, non-day-aligned instant those two disagree unless the
+  ;; day/rem-s split is computed with floor-consistent division throughout.
+  (is (= "1969-12-31T23:59:59Z" (t/->iso8601 (t/instant -1000))) "one second before epoch")
+  (is (= "1969-12-31T23:59:59Z" (t/->iso8601 (t/instant -1))) "sub-second before epoch, truncated to the second")
+  (is (= "1969-12-31T00:00:00Z" (t/->iso8601 (t/instant -86400000))) "exactly one day before epoch")
+  (is (= "1969-12-31T23:59:59Z"
+         (t/->iso8601 (t/iso8601->instant "1969-12-31T23:59:59Z")))
+      "->iso8601 . iso8601->instant is the identity for a pre-epoch instant too"))
+
 (deftest a-known-date
   (is (= "2026-06-30T12:00:00Z" (t/->iso8601 (t/iso8601->instant "2026-06-30T12:00:00Z"))))
   (is (= "2000-01-01T00:00:00Z" (t/->iso8601 (t/iso8601->instant "2000-01-01T00:00:00Z"))))
   (is (= "1999-12-31T23:59:59Z" (t/->iso8601 (t/iso8601->instant "1999-12-31T23:59:59Z")))))
 
 (deftest roundtrip
-  (doseq [ms [0 1000 60000 3600000 86400000 1751289600000 4102444800000]]
+  (doseq [ms [0 1000 60000 3600000 86400000 1751289600000 4102444800000
+              -1000 -86400000 -63072000000]]
     (is (= ms (:time/instant (t/iso8601->instant (t/->iso8601 (t/instant ms)))))
         (str "roundtrip failed for ms=" ms))))
 
