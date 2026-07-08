@@ -97,12 +97,21 @@
         y   (if (<= m 2) (inc y) y)]
     [y m d]))
 
+(defn- floor-div
+  "Integer division that floors toward negative infinity (unlike `quot`,
+  which truncates toward zero) -- consistent with `mod`, which Clojure
+  already defines as floored (result always has the sign of `b`). Derived
+  from that floored `mod` so the two never disagree: `a = b*floor-div +
+  floor-mod` exactly, with no separate rounding rule to drift out of sync."
+  [a b]
+  (quot (- a (mod a b)) b))
+
 (defn ->iso8601
   "Format an instant as UTC `YYYY-MM-DDTHH:MM:SSZ`. No fractional seconds."
   [i]
   (let [ms    (:time/instant i)
-        secs  (quot ms 1000)
-        day   (quot secs 86400)
+        secs  (floor-div ms 1000)
+        day   (floor-div secs 86400)
         rem-s (mod secs 86400)
         hour  (quot rem-s 3600)
         min   (quot (mod rem-s 3600) 60)
