@@ -4,7 +4,59 @@
  ;; Instant/Duration as pure data; wall-clock comes from a HOST-INJECTED clock
  ;; capability (no System/currentTimeMillis in the lib) so it runs on kotoba-WASM.
  ;; Zero third-party runtime deps; .cljc. See ADR-kotoba-lang-foundational-stdlib.md.
- :deps {}
+ :deps {
+        io.github.kotoba-lang/time--to-iso8601
+        {:git/url "https://github.com/kotoba-lang/time--to-iso8601.git"
+         :git/sha "fb6570c56649a9a4fcc2ac26e9f632ed02f5e960"}
+        io.github.kotoba-lang/time-add
+        {:git/url "https://github.com/kotoba-lang/time-add.git"
+         :git/sha "f6537001c023b0a4c0bc3fd11b1bcf05573f240b"}
+        io.github.kotoba-lang/time-after
+        {:git/url "https://github.com/kotoba-lang/time-after.git"
+         :git/sha "abfb84f1c4675a5e199f648b4805df4067374d22"}
+        io.github.kotoba-lang/time-before
+        {:git/url "https://github.com/kotoba-lang/time-before.git"
+         :git/sha "77bcb4d8a71f4cdc33ba69373654adca98d56bae"}
+        io.github.kotoba-lang/time-between
+        {:git/url "https://github.com/kotoba-lang/time-between.git"
+         :git/sha "12dc5df3974c5e76cd447a2140d907c02e9d4fe8"}
+        io.github.kotoba-lang/time-days
+        {:git/url "https://github.com/kotoba-lang/time-days.git"
+         :git/sha "5a2d573ee01d13fa24bff599062173e75860973c"}
+        io.github.kotoba-lang/time-duration
+        {:git/url "https://github.com/kotoba-lang/time-duration.git"
+         :git/sha "6a2de69a0f47f5091a49547158d59750b4ad1048"}
+        io.github.kotoba-lang/time-duration-millis
+        {:git/url "https://github.com/kotoba-lang/time-duration-millis.git"
+         :git/sha "f9cac44c03e5d45e9e06504185de1db8084c904f"}
+        io.github.kotoba-lang/time-hours
+        {:git/url "https://github.com/kotoba-lang/time-hours.git"
+         :git/sha "9943c807619c39af0d3ff0fa5ea67f6e1dc1c69f"}
+        io.github.kotoba-lang/time-instant
+        {:git/url "https://github.com/kotoba-lang/time-instant.git"
+         :git/sha "3671b13c0bcea6cfb0a7c0ca49815e62459a8367"}
+        io.github.kotoba-lang/time-instant-millis
+        {:git/url "https://github.com/kotoba-lang/time-instant-millis.git"
+         :git/sha "a746e274e063cde8aa33a15cd5cf01416b87c385"}
+        io.github.kotoba-lang/time-iso8601-to-instant
+        {:git/url "https://github.com/kotoba-lang/time-iso8601-to-instant.git"
+         :git/sha "c230fc67f62f49b6c9194d17a9aeb0f39156ef5b"}
+        io.github.kotoba-lang/time-millis
+        {:git/url "https://github.com/kotoba-lang/time-millis.git"
+         :git/sha "9ab4bfcee2e938dd21577d38969046ae172e09ac"}
+        io.github.kotoba-lang/time-minutes
+        {:git/url "https://github.com/kotoba-lang/time-minutes.git"
+         :git/sha "1da8c75e64acbe18615990fd55f86971bd1207e9"}
+        io.github.kotoba-lang/time-now
+        {:git/url "https://github.com/kotoba-lang/time-now.git"
+         :git/sha "3ee0206a372d23169aad09f9bdc17783b80fec0d"}
+        io.github.kotoba-lang/time-seconds
+        {:git/url "https://github.com/kotoba-lang/time-seconds.git"
+         :git/sha "9d2704299c53299472b567acd8dd0068c774ed7e"}
+        io.github.kotoba-lang/time-sub
+        {:git/url "https://github.com/kotoba-lang/time-sub.git"
+         :git/sha "837d975333351b4faa0333e606711e119a4ac9cf"}
+}
  :aliases
  {:test {:extra-paths ["test"]
          :extra-deps {io.github.cognitect-labs/test-runner
