@@ -46,5 +46,5 @@ io.github.kotoba-lang/time {:git/sha "<sha>"}
 ## Verify
 
 ```sh
-clojure -M:test
+kbb -M:test
 ```
